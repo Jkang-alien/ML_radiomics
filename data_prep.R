@@ -10,7 +10,12 @@ colnames(test) <- colnames(training)
 names(test_2)[1] <- 'class'
 test$Max_val <- as.numeric(as.character((test$Max_val)))
 test <- rbind(test, test_2)
-training$class <- factor(training$class)
-test$class <- factor(test$class)
-summary(test)
+
+library(dplyr)
+library(forcats)
+
+training <- training %>%
+  mutate(class = recode(class, '0' = 'Type1',
+                        '1' = 'Type2'))
 rm(test_2)
+
