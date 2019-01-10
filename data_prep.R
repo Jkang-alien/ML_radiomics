@@ -17,5 +17,11 @@ library(forcats)
 training <- training %>%
   mutate(class = recode(class, '0' = 'Type1',
                         '1' = 'Type2'))
+
+training$class <- factor(training$class)
 rm(test_2)
 
+
+test <- test %>%
+  mutate(class = recode(class, '0' = 'Type1',
+                        '1' = 'Type2'))
